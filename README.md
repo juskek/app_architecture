@@ -8,17 +8,9 @@
 - [app\_architecture](#app_architecture)
 - [Terminology](#terminology)
 - [react-context-state-management](#react-context-state-management)
-  - [Advantages](#advantages)
-  - [Disadvantages](#disadvantages)
-  - [Recommended Use Cases (by React)](#recommended-use-cases-by-react)
 - [react-redux-state-management](#react-redux-state-management)
-  - [Advantages](#advantages-1)
-  - [Disadvantages](#disadvantages-1)
 - [react-repository-pattern](#react-repository-pattern)
-  - [Data Layer](#data-layer)
-  - [View Layer](#view-layer)
-  - [Advantages](#advantages-2)
-  - [Disadvantages](#disadvantages-2)
+- [react-inversify-dependency-injection](#react-inversify-dependency-injection)
     - [Creating new examples](#creating-new-examples)
 
 
@@ -29,7 +21,7 @@
 - Architecture: Combination of patterns and state management and tools, dependent on library
 - Prop Injection (React): Passing props down through (functional) components
 - Constructor Injection: Passing dependencies when an object is created
-- Dependency Injection: Method where one object (usually the DI container) automatically supplies implementations of an interface that another object depends on 
+- Dependency Injection: Approach where one object (usually the DI container) automatically supplies implementations of an interface that another object depends on 
 - Inversion of Control: "don't call us, we'll call you". E.g. IoC container like Redux calls component to render when state changes, instead of component calling Redux to get state
 - IoC Container: aka DI Container. Container is used to supply dependencies to objects.
 
@@ -61,14 +53,14 @@ Provider is a component that wraps the components that will consume the state st
 
 useContext is a hook that allows components to consume the state of a context above the component in the tree. It also listens to changes in the context state, and rerenders the component when a change is detected.
 
-### Advantages
+**Advantages**
 - Stop prop drilling
 
 
-### Disadvantages
+**Disadvantages**
 - Non-explicit dependencies: Using a component that consumes a context will require a Provider of that context to be in the component tree. This is not explicit, and can be difficult to debug.
 
-### Recommended Use Cases (by React)
+**Recommended Use Cases (by React)**
 - Themes (e.g. light/dark mode)
 - Current Account (e.g. logged in user)
 - Routing (e.g. storing current route when building a router)
@@ -95,13 +87,14 @@ Selector is a function that allows you to select a specific object in the state 
 
 Dispatch is a method that allows you to update the state. It accepts an action, which is an object that contains the type of action. The reducing function will then update the state based on the action.
 
-### Advantages
+**Advantages**
 - Stop prop drilling
 - Reducing function 
 - Non-explicit dependencies: Redux store is available to all child components since it is a singleton and exists at the root of the app.
-### Disadvantages
+**Disadvantages**
 - Boilerplate
 - Non-explicit dependencies: Testing individual components requires mocking the Redux store, which is not explicit.
+- Imagine a 4000 line store file
 
 
 
@@ -118,7 +111,7 @@ This architectural approach uses two layers:
 - Data layer
 - View layer
 
-### Data Layer
+**Data Layer**
 The data layer has two repositories:
 - BaseRepository 
   - extends HttpClient 
@@ -130,22 +123,70 @@ HttpClient is a wrapper around an arbitrary library that makes HTTP requests. In
 
 Another benefit of separating the data layer from the view layer is repositories can extend other repositories, in this case `UserRepository extends BaseRepository`. This allows UserRepository to utilise the CRUD operations in the BaseRepository, which would not be as straightforward if the CRUD operations were defined in the view or view models.
 
-### View Layer
+**View Layer**
 The view layer calls directly from the repositories to get the data.
 
-### Advantages 
+**Advantages**
 - Separation of concerns between data and view layers allow for easier testing, maintenance and extending
+  - E.g Loose coupling between data and view layers, repositories can be swapped out for other implementations
 
-### Disadvantages
+**Disadvantages**
 - Boilerplate
 
 
 
+## react-inversify-dependency-injection
+
+```
+npm start
+
+// Change env in IOCContainer.tsx to see dependency injection in action
+```
+
+Inversify uses dependency injection to inject dependencies into components automatically. There are four main components in this framework:
+- interface
+- @injectable
+- Container
+- get()
+
+Typescript interfaces are used to define what the dependency can do. This allows different implementations to be used, as long as they implement the interface.
+
+@injectable is a decorator that is used to define the class as a dependency. This allows the class to be injected into other classes.
+
+Container is a class that is used to store dependencies. It is a singleton, so there is only one instance of the container.
+
+get() is a method that is used to get the dependency from the container. It accepts the interface as an argument, and returns the dependency that implements the interface.
+
+In this example, the repository pattern is used to demonstrate the basic idea behind dependency injection.
+
+- IUserRepository is the interface that defines the methods that need to be implemented
+- UserRepository implements IUserRepository and gets the data from data source 1
+- AltUserRepository implements IUserRepository and gets the data from data source 2
+- IUserRepository is injected into App.tsx and the implementation of IUserRepository is determined by the environment variable in IOCContainer.tsx
+
+This allows the data source to be changed without changing the code in App.tsx. This is useful when testing, as the data source can be mocked.
+
+**Advantages**
+- Automatic injection of dependencies using inversify
+
+**Disadvantages**
+- Boilerplate
+- Bundle size increases
 
 #### Creating new examples
 - React
 
 ```
-npm install -g create-react-app
 npx create-react-app my-app --template typescript
+```
+- React Native
+
+```
+expo init my-app
+```
+
+- Flutter
+
+```
+flutter create my_app
 ```
