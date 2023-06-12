@@ -1,20 +1,17 @@
+This repository contains examples of different app architectures, to understand the pros and cons of each approach, and when to use them. The objective of app architecture is to make code more maintainable, testable, and scalable.
 
 
-## app_architecture
-
-This repository contains examples of different app architectures. The goal is to understand the pros and cons of each approach, and when to use them.
-
-
-- [app\_architecture](#app_architecture)
-- [Terminology](#terminology)
-- [react-context-state-management](#react-context-state-management)
-- [react-redux-state-management](#react-redux-state-management)
-- [react-repository-pattern](#react-repository-pattern)
-- [react-inversify-dependency-injection](#react-inversify-dependency-injection)
-    - [Creating new examples](#creating-new-examples)
+- [1. Terminology](#1-terminology)
+- [2. State Management](#2-state-management)
+  - [2.1. react-context-state-management](#21-react-context-state-management)
+  - [2.2. react-redux-state-management](#22-react-redux-state-management)
+- [3. Design Patterns](#3-design-patterns)
+  - [3.1. react-repository-pattern](#31-react-repository-pattern)
+  - [3.2. react-inversify-dependency-injection](#32-react-inversify-dependency-injection)
+- [Testing](#testing)
 
 
-## Terminology
+## 1. Terminology
 
 - Pattern: Design pattern in code, library-agnostic
 - State management: How data is stored and accessed, dependent on library
@@ -34,8 +31,8 @@ var svc = new ShippingService(new ProductLocator(),
 
 var svc = IoC.Resolve<IShippingService>();
 ```
-
-## react-context-state-management
+## 2. State Management
+### 2.1. react-context-state-management
 
 ```
 cd react-context-state-management
@@ -66,7 +63,7 @@ useContext is a hook that allows components to consume the state of a context ab
 - Routing (e.g. storing current route when building a router)
 - Managing large app state (common to use with context with a reducer)
 
-## react-redux-state-management
+### 2.2. react-redux-state-management
 
 ```
 cd react-context-state-management
@@ -111,8 +108,8 @@ Redux is most useful in cases when:
 
 
 
-
-## react-repository-pattern
+## 3. Design Patterns
+### 3.1. react-repository-pattern
 
 Based on [Medium article](https://medium.com/@JeffyJeff/a-step-by-step-guide-to-abstraction-with-a-generic-repository-pattern-typescript-and-react-990b579c10b8)
 
@@ -149,7 +146,7 @@ The view layer calls directly from the repositories to get the data.
 
 
 
-## react-inversify-dependency-injection
+### 3.2. react-inversify-dependency-injection
 
 ```
 npm start
@@ -180,6 +177,15 @@ In this example, the repository pattern is used to demonstrate the basic idea be
 
 This allows the data source to be changed without changing the code in App.tsx. This is useful when testing, as the data source can be mocked.
 
+## Testing
+
+There are four main types of testing:
+- Unit testing: Testing individual functions or classes
+- Component testing: Testing interaction and rendering of UI components
+- Integration testing: Testing functionality between frontend and backend, or between different components of the app.
+- End-to-end testing: Testing from the end user's perspective
+
+
 **Advantages**
 - Automatic injection of dependencies using inversify
 
@@ -187,7 +193,7 @@ This allows the data source to be changed without changing the code in App.tsx. 
 - Boilerplate
 - Bundle size increases
 
-#### Creating new examples
+**Creating new examples**
 - React
 
 ```
