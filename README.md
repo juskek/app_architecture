@@ -10,6 +10,8 @@ This repository contains examples of different app architectures, to understand 
   - [3.2. react-inversify-dependency-injection](#32-react-inversify-dependency-injection)
 - [Testing](#testing)
   - [react-testing-library](#react-testing-library)
+  - [cypress](#cypress)
+  - [playwright](#playwright)
 
 
 ## 1. Terminology
@@ -202,22 +204,24 @@ npm test
 
 In this example, a unit test for the function sum() and a component test to check if a link is rendered is shown in `sum.test.ts` and `App.test.tsx` respectively.
 
+### cypress
+For JS web apps, capable of end-to-end, integration, component and unit testing.
+
+Requires desktop app
+### playwright
+
+E2E testing for web apps
 
 
 **Creating new examples**
-- React
 
 ```
+// React 
 npx create-react-app my-app --template typescript
-```
-- React Native
 
-```
+// React Native
 expo init my-app
-```
 
-- Flutter
-
-```
+// Flutter
 flutter create my_app
 ```
