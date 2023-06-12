@@ -210,7 +210,18 @@ For JS web apps, capable of end-to-end, integration, component and unit testing.
 Requires desktop app
 ### playwright
 
-E2E testing for web apps
+E2E testing for web apps.
+
+```
+// For running test on web app
+npx playwright test
+
+// For running test on components, e.g. component that hasn't deployed yet
+npm run test-ct
+```
+
+In this example, a component test for the App component is shown in `App.spec.tsx`. Also, tests can be run on live website, as shown in `example.spec.ts`.
+
 
 
 **Creating new examples**
