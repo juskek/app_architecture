@@ -9,6 +9,7 @@ This repository contains examples of different app architectures, to understand 
   - [3.1. react-repository-pattern](#31-react-repository-pattern)
   - [3.2. react-inversify-dependency-injection](#32-react-inversify-dependency-injection)
 - [Testing](#testing)
+  - [react-jest-testing](#react-jest-testing)
 
 
 ## 1. Terminology
@@ -177,6 +178,12 @@ In this example, the repository pattern is used to demonstrate the basic idea be
 
 This allows the data source to be changed without changing the code in App.tsx. This is useful when testing, as the data source can be mocked.
 
+**Advantages**
+- Automatic injection of dependencies using inversify
+
+**Disadvantages**
+- Boilerplate
+- Bundle size increases
 ## Testing
 
 There are four main types of testing:
@@ -185,13 +192,15 @@ There are four main types of testing:
 - Integration testing: Testing functionality between frontend and backend, or between different components of the app.
 - End-to-end testing: Testing from the end user's perspective
 
+### react-jest-testing
 
-**Advantages**
-- Automatic injection of dependencies using inversify
+create-react-app comes shipped with Jest testing
 
-**Disadvantages**
-- Boilerplate
-- Bundle size increases
+```
+npm test
+```
+
+
 
 **Creating new examples**
 - React
