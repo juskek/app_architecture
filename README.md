@@ -2,7 +2,7 @@
 
 ## app_architecture
 
-
+This repository contains examples of different app architectures. The goal is to understand the pros and cons of each approach, and when to use them.
 
 
 - [app\_architecture](#app_architecture)
@@ -91,10 +91,24 @@ Dispatch is a method that allows you to update the state. It accepts an action, 
 - Stop prop drilling
 - Reducing function 
 - Non-explicit dependencies: Redux store is available to all child components since it is a singleton and exists at the root of the app.
+
 **Disadvantages**
 - Boilerplate
 - Non-explicit dependencies: Testing individual components requires mocking the Redux store, which is not explicit.
 - Imagine a 4000 line store file
+
+**Recommended Use Cases [(by Redux)](https://redux.js.org/faq/general#when-should-i-use-redux)**
+
+"don't use Redux until you have problems with vanilla React"
+
+Redux is most useful in cases when:
+
+- You have large amounts of application state that are needed in many places in the app
+- The app state is updated frequently
+- The logic to update that state may be complex
+- The app has a medium or large-sized codebase, and might be worked on by many people
+- You need to see how that state is being updated over time
+
 
 
 
