@@ -200,6 +200,8 @@ create-react-app comes shipped with Jest testing
 npm test
 ```
 
+In this example, a unit test for the function sum() and a component test to check if a link is rendered is shown in `sum.test.ts` and `App.test.tsx` respectively.
+
 
 
 **Creating new examples**
