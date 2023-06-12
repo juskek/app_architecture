@@ -9,7 +9,7 @@ This repository contains examples of different app architectures, to understand 
   - [3.1. react-repository-pattern](#31-react-repository-pattern)
   - [3.2. react-inversify-dependency-injection](#32-react-inversify-dependency-injection)
 - [Testing](#testing)
-  - [react-jest-testing](#react-jest-testing)
+  - [react-testing-library](#react-testing-library)
 
 
 ## 1. Terminology
@@ -192,9 +192,9 @@ There are four main types of testing:
 - Integration testing: Testing functionality between frontend and backend, or between different components of the app.
 - End-to-end testing: Testing from the end user's perspective
 
-### react-jest-testing
+### react-testing-library
 
-create-react-app comes shipped with Jest testing
+create-react-app comes shipped with `react-testing-library`, which uses Jest as the test runner and comes with tools for unit, integration, and end-to-end testing
 
 ```
 npm test
