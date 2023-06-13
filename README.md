@@ -12,6 +12,7 @@ This repository contains examples of different app architectures, to understand 
   - [react-testing-library](#react-testing-library)
   - [cypress](#cypress)
   - [playwright](#playwright)
+  - [react-native-android-architecture](#react-native-android-architecture)
 
 
 ## 1. Terminology
@@ -186,6 +187,33 @@ This allows the data source to be changed without changing the code in App.tsx. 
 **Disadvantages**
 - Boilerplate
 - Bundle size increases
+- Does not work with React Native Expo
+  ```
+   FAIL  src/data/counter/__tests__/CounterRepository-test.js
+  ● Test suite failed to run
+
+    TypeError: Reflect.hasOwnMetadata is not a function
+
+      2 | import { ICounterRepository } from "./ICounterRepository";
+      3 |
+    > 4 | @injectable()
+        |              ^
+      5 | export class CounterRepository implements ICounterRepository{  
+      6 |     private _count: number = 0;
+      7 |
+
+      at node_modules/inversify/src/annotation/injectable.ts:7:17
+      at Object._dec (src/data/counter/CounterRepository.ts:4:14)
+      at Object.<anonymous> (src/data/counter/__tests__/CounterRepository-test.js:1:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        0.881 s, estimated 1 s
+Ran all test suites.
+  ```
+
+
 ## Testing
 
 There are four main types of testing:
@@ -222,6 +250,11 @@ npm run test-ct
 
 In this example, a component test for the App component is shown in `App.spec.tsx`. Also, tests can be run on live website, as shown in `example.spec.ts`.
 
+### react-native-android-architecture
+
+```
+npx expo start 
+```
 
 
 **Creating new examples**
@@ -231,8 +264,19 @@ In this example, a component test for the App component is shown in `App.spec.ts
 npx create-react-app my-app --template typescript
 
 // React Native
-expo init my-app
+npx create-expo-app my-app -t expo-template-blank-typescript
 
 // Flutter
 flutter create my_app
+```
+
+Replicating this stack:
+
+1. `npx create-expo-app react-native-android-architecture -t expo-template-blank-typescript`
+2. Follow installation instructions [here](https://docs.expo.dev/develop/unit-testing/)
+3. `*.test.tsx` files will run with npm test, but will throw linting errors. To fix,
+  - `npx expo install @types/jest` (e.g. cannot find name 'describe', 'it')
+  - `npx expo install @types/react-test-renderer` (e.g. could not find a declaration file for module 'react-test-renderer')
+4. 
+
 ```
