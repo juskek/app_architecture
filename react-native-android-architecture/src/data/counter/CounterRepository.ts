@@ -9,5 +9,6 @@ export class CounterRepository implements ICounterRepository{
 
     increment(): void {
         this._count++;
+        console.log(`Count is now ${this._count}`)
     }
 }
