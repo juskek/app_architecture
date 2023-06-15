@@ -1,4 +1,5 @@
 
+import { createContext } from "react";
 import { CounterRepository } from "./CounterRepository";
 import Constants from 'expo-constants';
 
@@ -24,3 +25,5 @@ export abstract class ICounterRepository {
 
     abstract increment(): void;
 }
+
+export const CounterRepositoryContext = createContext<ICounterRepository>(ICounterRepository.instance);
