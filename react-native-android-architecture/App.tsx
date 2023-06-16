@@ -1,16 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Counter from './src/view/counter/Counter';
-import OtherCounter from './src/view/other_counter/OtherCounter';
+import SharedCounterOne from './src/view/shared-counter-one/SharedCounterOne';
+import SharedCounterTwo from './src/view/shared-counter-two/SharedCounterTwo';
 import { useContext } from 'react';
 import { SharedCounterRepositoryContext } from './src/data/counter/ISharedCounterRepository';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <Counter/>
-      <OtherCounter/>
+      <SharedCounterOne/>
+      <SharedCounterTwo/>
       <StatusBar style="auto" />
     </View>
   );

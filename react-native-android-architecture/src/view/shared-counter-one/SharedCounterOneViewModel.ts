@@ -7,7 +7,8 @@ type CounterPageProps = {
     increment: () => void,
 }
 
-export const OtherCounterViewModel = (): CounterPageProps => {
+// View
+export const SharedCounterOneViewModel = (): CounterPageProps => {
     // this state is what will allow the UI to be retriggered on change
     const [count, setCount] = useState<number>(ISharedCounterRepository.instance.count);
 
@@ -35,6 +36,8 @@ export const OtherCounterViewModel = (): CounterPageProps => {
     const increment = () => {
         ISharedCounterRepository.instance.increment();
     }
+
+
     return {
         count,
         increment,
