@@ -1,15 +1,15 @@
 import { useContext } from "react";
 
 import {  Button, Text, View } from 'react-native';
-import { useCounterPage } from "./useCounterPage";
+import { CounterViewModel } from "./CounterViewModel";
 
 
 
-export default function CounterPage() {
+export default function Counter() {
     const {
         count,
         increment
-    } = useCounterPage();
+    } = CounterViewModel();
 
     return (
         <View>

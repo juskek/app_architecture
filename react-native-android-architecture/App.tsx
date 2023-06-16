@@ -1,14 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import HomePage from './src/view/home_page/HomePage';
-import CounterPage from './src/view/counter_page/CounterPage';
+import Counter from './src/view/counter/Counter';
+import OtherCounter from './src/view/other_counter/OtherCounter';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Text>Open up App.tsx to start working on your app!</Text>
-      <CounterPage/>
-      {/* <HomePage/> */}
+      <Counter/>
+      <OtherCounter/>
       <StatusBar style="auto" />
     </View>
   );
