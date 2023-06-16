@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ICounterRepository } from "./ICounterRepository";
-import { CounterObserver } from "./CounterObserver";
+import { CounterListener } from "./CounterListener";
 
 export class CounterRepository implements ICounterRepository{  
     private _count: number = 0;
@@ -17,25 +17,25 @@ export class CounterRepository implements ICounterRepository{
     increment(): void {
         this._setCount(this._count++);
         console.log(`Count is now ${this._count}`)
-        this.notifyObservers(); // Added this line to trigger the state update which will be reflected in the UI
+        this.notifyListeners(); // Added this line to trigger the state update which will be reflected in the UI
 
     }
 
-    private observers: CounterObserver[] = [];
+    private listeners: CounterListener[] = [];
 
 
-    addObserver(observer: CounterObserver): void {
-        this.observers.push(observer);
-    }
-    
-    removeObserver(observer: CounterObserver): void {
-        const index = this.observers.indexOf(observer);
-        if (index !== 1) this.observers.splice(index, 1);
+    addListener(listener: CounterListener): void {
+        this.listeners.push(listener);
     }
     
-    notifyObservers(): void {
-        this.observers.forEach((observer: CounterObserver) => {
-            observer.update();
+    removeListener(listener: CounterListener): void {
+        const index = this.listeners.indexOf(listener);
+        if (index !== 1) this.listeners.splice(index, 1);
+    }
+    
+    notifyListeners(): void {
+        this.listeners.forEach((listener: CounterListener) => {
+            listener.update();
         })
     }
 }

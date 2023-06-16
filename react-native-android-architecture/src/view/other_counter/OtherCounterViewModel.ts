@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { CounterRepositoryContext, ICounterRepository } from "../../data/counter/ICounterRepository";
-import { CounterObserver } from "../../data/counter/CounterObserver";
+import { CounterListener } from "../../data/counter/CounterListener";
 
 type CounterPageProps = {
     count: number,
@@ -13,22 +13,22 @@ export const OtherCounterViewModel = (): CounterPageProps => {
 
     useEffect(() => {
         /* 
-         We define the observer to link the class and the UI in a reactive way.
-         When the count variable is updated in the class, the observers are notified and the state variable
+         We define the listener to link the class and the UI in a reactive way.
+         When the count variable is updated in the class, the listeners are notified and the state variable
          is updated (setCount), triggering the UI to update
         */
-        const observer: CounterObserver = {
+        const listener: CounterListener = {
             update: () => {
                 setCount(ICounterRepository.instance.count);
             }
         }
 
-        // "subscribe" the observer to the class instance
-        ICounterRepository.instance.addObserver(observer);
+        // "subscribe" the listener to the class instance
+        ICounterRepository.instance.addListener(listener);
 
-        // clear the observer when it's not needed anymore (i.e. on dismount)
+        // clear the listener when it's not needed anymore (i.e. on dismount)
         return () => {
-            ICounterRepository.instance.removeObserver(observer);
+            ICounterRepository.instance.removeListener(listener);
         }
     }, []);
 
