@@ -3,8 +3,6 @@ import { useContext } from "react";
 import { Button, Text, View } from 'react-native';
 import { CounterViewModel } from "./CounterViewModel";
 
-
-
 export default function Counter() {
     const {
         count,

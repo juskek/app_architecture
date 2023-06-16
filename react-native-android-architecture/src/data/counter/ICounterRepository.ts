@@ -21,7 +21,9 @@ export abstract class ICounterRepository {
         return this._instance;
     }
 
-    abstract get count(): number;
+    abstract init(): void;
+
+    abstract count: number;
 
     abstract increment(): void;
 }

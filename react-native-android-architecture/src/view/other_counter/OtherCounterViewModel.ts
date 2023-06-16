@@ -6,18 +6,8 @@ type CounterPageProps = {
     increment: () => void,
 }
 
-// View
 export const OtherCounterViewModel = (): CounterPageProps => {
-    const repository = useContext(CounterRepositoryContext);
-    const [count, _setCounter] = useState(repository.count);
-
-
-    const increment = () => {
-        repository.increment();
-        _setCounter(repository.count);
-    }
-
-
+    const { count, increment } = useContext(CounterRepositoryContext);
 
     return {
         count,
