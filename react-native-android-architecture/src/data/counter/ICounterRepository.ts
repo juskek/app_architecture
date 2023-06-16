@@ -2,6 +2,7 @@
 import { createContext } from "react";
 import { CounterRepository } from "./CounterRepository";
 import Constants from 'expo-constants';
+import { CounterObserver } from "./CounterObserver";
 
 // Defined as abstract class instead of interface to allow for static methods
 export abstract class ICounterRepository {
@@ -21,11 +22,14 @@ export abstract class ICounterRepository {
         return this._instance;
     }
 
-    abstract init(): void;
-
     abstract count: number;
 
     abstract increment(): void;
+
+    abstract addObserver(observer: CounterObserver): void;
+    abstract removeObserver(observer: CounterObserver): void;
+    abstract notifyObservers(): void;
+
 }
 
 export const CounterRepositoryContext = createContext<ICounterRepository>(ICounterRepository.instance);

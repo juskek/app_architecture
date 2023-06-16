@@ -6,10 +6,6 @@ import { useContext } from 'react';
 import { CounterRepositoryContext } from './src/data/counter/ICounterRepository';
 
 export default function App() {
-  const { init } = useContext(CounterRepositoryContext);
-  init();
-
-  
   return (
     <View style={styles.container}>
       <Text>Open up App.tsx to start working on your app!</Text>
