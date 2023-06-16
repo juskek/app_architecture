@@ -25,5 +25,3 @@ export abstract class ISoloCounterRepository {
     abstract increment(): void;
 
 }
-
-export const SharedCounterRepositoryContext = createContext<ISoloCounterRepository>(ISoloCounterRepository.instance);
