@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { CounterRepositoryContext, ICounterRepository } from "../../data/counter/ICounterRepository";
-import { CounterListener } from "../../data/counter/CounterListener";
+import { SharedCounterRepositoryContext, ISharedCounterRepository } from "../../data/counter/ISharedCounterRepository";
+import { CounterListener } from "../../data/counter/SharedCounterListener";
 
 type CounterPageProps = {
     count: number,
@@ -10,7 +10,7 @@ type CounterPageProps = {
 // View
 export const CounterViewModel = (): CounterPageProps => {
     // this state is what will allow the UI to be retriggered on change
-    const [count, setCount] = useState<number>(ICounterRepository.instance.count);
+    const [count, setCount] = useState<number>(ISharedCounterRepository.instance.count);
 
     useEffect(() => {
         /* 
@@ -20,21 +20,21 @@ export const CounterViewModel = (): CounterPageProps => {
         */
         const listener: CounterListener = {
             update: () => {
-                setCount(ICounterRepository.instance.count);
+                setCount(ISharedCounterRepository.instance.count);
             }
         }
 
         // "subscribe" the listener to the class instance
-        ICounterRepository.instance.addListener(listener);
+        ISharedCounterRepository.instance.addListener(listener);
 
         // clear the listener when it's not needed anymore (i.e. on dismount)
         return () => {
-            ICounterRepository.instance.removeListener(listener);
+            ISharedCounterRepository.instance.removeListener(listener);
         }
     }, []);
 
     const increment = () => {
-        ICounterRepository.instance.increment();
+        ISharedCounterRepository.instance.increment();
     }
 
 

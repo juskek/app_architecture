@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { ICounterRepository } from "./ICounterRepository";
-import { CounterListener } from "./CounterListener";
+import { ISharedCounterRepository } from "./ISharedCounterRepository";
+import { CounterListener } from "./SharedCounterListener";
 
-export class CounterRepository implements ICounterRepository{  
+export class SharedCounterRepository implements ISharedCounterRepository{  
     private _count: number = 0;
     private _setCount: (count: number) => void = () => {};
 

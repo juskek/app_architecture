@@ -1,18 +1,18 @@
 
 import { createContext } from "react";
-import { CounterRepository } from "./CounterRepository";
+import { SharedCounterRepository } from "./SharedCounterRepository";
 import Constants from 'expo-constants';
-import { CounterListener } from "./CounterListener";
+import { CounterListener } from "./SharedCounterListener";
 
 // Defined as abstract class instead of interface to allow for static methods
-export abstract class ICounterRepository {
+export abstract class ISharedCounterRepository {
 
-    private static _instance: ICounterRepository;
-    static get instance(): ICounterRepository {
+    private static _instance: ISharedCounterRepository;
+    static get instance(): ISharedCounterRepository {
         if (!this._instance) {
             switch (Constants.expoConfig?.extra?.env) {
                 case 'main':
-                    this._instance = new CounterRepository();
+                    this._instance = new SharedCounterRepository();
                     break;
 
                 default:
@@ -32,4 +32,4 @@ export abstract class ICounterRepository {
 
 }
 
-export const CounterRepositoryContext = createContext<ICounterRepository>(ICounterRepository.instance);
+export const SharedCounterRepositoryContext = createContext<ISharedCounterRepository>(ISharedCounterRepository.instance);

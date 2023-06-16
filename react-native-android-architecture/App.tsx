@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Counter from './src/view/counter/Counter';
 import OtherCounter from './src/view/other_counter/OtherCounter';
 import { useContext } from 'react';
-import { CounterRepositoryContext } from './src/data/counter/ICounterRepository';
+import { SharedCounterRepositoryContext } from './src/data/counter/ISharedCounterRepository';
 
 export default function App() {
   return (
