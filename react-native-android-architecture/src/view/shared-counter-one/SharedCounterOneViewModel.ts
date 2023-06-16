@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { SharedCounterRepositoryContext, ISharedCounterRepository } from "../../data/counter/ISharedCounterRepository";
-import { CounterListener } from "../../data/counter/SharedCounterListener";
+import { SharedCounterRepositoryContext, ISharedCounterRepository } from "../../data/shared-counter/ISharedCounterRepository";
+import { CounterListener } from "../../data/shared-counter/SharedCounterListener";
 
 type CounterPageProps = {
     count: number,
