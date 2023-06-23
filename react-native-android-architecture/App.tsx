@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import SharedCounterOne from './src/view/shared-counter-one/SharedCounterOne';
 import SharedCounterTwo from './src/view/shared-counter-two/SharedCounterTwo';
 import SoloCounter from './src/view/solo-counter/SoloCounter';
+import User from './src/view/user/User';
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <SoloCounter/>
       <SharedCounterOne/>
       <SharedCounterTwo/>
+      <User/>
       <StatusBar style="auto" />
     </View>
   );
