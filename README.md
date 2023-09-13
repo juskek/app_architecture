@@ -280,3 +280,7 @@ Replicating this stack:
 4. 
 
 ```
+
+Integration Testing Temp:
+
+![integration_test](https://github.com/juskek/app_architecture/assets/57725347/3266ee78-0fba-424a-93cc-4acf37e96095)
